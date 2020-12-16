@@ -8,6 +8,7 @@ The logic implemented into 2 classes CustomPipelineLogic and SQLPipelineLogic wh
 
 ##### def getSession(events:Dataset[Event]):Dataset[Session]
 getSession method is used to build the session based on the app events 
+
 Input: events:Dataset[Event]  => userId,eventId,eventTime,eventType,attributes
 
 Output: Dataset[Session] => sessionId,userId,campaignId,channelId,purchaseId
