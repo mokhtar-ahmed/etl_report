@@ -1,6 +1,6 @@
 import sbt.Keys.libraryDependencies
 
-name := "apple-grid-task"
+name := "etl-marketing-reports"
 
 version := "0.1"
 

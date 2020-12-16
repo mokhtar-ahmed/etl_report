@@ -11,8 +11,7 @@ class SQLPipelineLogicTests extends BaseTest {
     val ss:SparkSession = sparkSession
     val dataContext = DataContextBuilder.gather(ss, config)
     val sessions = getSession(dataContext.events)
-    sessions.show()
-    println(s"records count = ${sessions.count()}")
+    log.info(s"records count = ${sessions.count()}")
     assert(sessions.count() == 20)
   }
 
@@ -23,8 +22,7 @@ class SQLPipelineLogicTests extends BaseTest {
     val dataContext = DataContextBuilder.gather(ss, config)
     val sessions = getSession(dataContext.events)
     val purchases = getPurchasesDetails(sessions, dataContext.purchases)
-    println("purchase details dataset ...")
-    purchases.show(false)
+    log.info("purchase details dataset ...")
     purchases.collect().toSeq should contain theSameElementsAs purchaseDetailsExpected
   }
 
@@ -34,7 +32,6 @@ class SQLPipelineLogicTests extends BaseTest {
     import ss.implicits._
     val purchaseDetails = purchaseDetailsExpected.toDS
     val topCamps = getTopCampaignsByRevenue(purchaseDetails)
-    topCamps.show()
     topCamps.collect() should contain theSameElementsAs campaignRevenuesExpected
   }
 
@@ -44,7 +41,6 @@ class SQLPipelineLogicTests extends BaseTest {
     import ss.implicits._
     val purchaseDetails = purchaseDetailsExpected.toDS
     val topChannels = getTopChannelsByEngagement(purchaseDetails)
-    topChannels.show()
     topChannels.collect().toSeq should contain theSameElementsAs channelsEngagementExpected
   }
 
