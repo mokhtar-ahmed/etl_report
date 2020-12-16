@@ -9,10 +9,12 @@ The logic implemented into 2 classes CustomPipelineLogic and SQLPipelineLogic wh
 ##### def getSession(events:Dataset[Event]):Dataset[Session]
 getSession method is used to build the session based on the app events 
 Input: events:Dataset[Event]  => userId,eventId,eventTime,eventType,attributes
+
 Output: Dataset[Session] => sessionId,userId,campaignId,channelId,purchaseId
 
 ##### def getPurchasesDetails(sessions:Dataset[Session], purchases:Dataset[Purchase]):Dataset[PurchaseDetails]
 getPurchasesDetails method is used to enrich the purchases action with the session details  
+
 Input: sessions:Dataset[Session]  =>   sessionId, userId, campaignId, channelId, purchaseId
        purchases:Dataset[Purchase] =>  purchaseId, purchaseTime, billingCost, isConfirmed
         
@@ -20,12 +22,16 @@ Output: Dataset[PurchaseDetails] => sessionId,userId,purchaseId,campaignId,chann
 
 ##### def getTopCampaignsByRevenue(purchasesDetails:Dataset[PurchaseDetails]): Dataset[CampaignRevenue]
 getTopCampaignsByRevenue to get the  campaigns revenues  
+
 Input: Dataset[PurchaseDetails] => sessionId,userId,purchaseId,campaignId,channelId,isConfirmed,billingCost,purchaseTime
+
 Output: campaignId, totalRevenue
 
 #####  def getTopChannelsByEngagement(purchasesDetails:Dataset[PurchaseDetails]): Dataset[ChannelEngagement]
 getTopChannelsByEngagement to get the channel engagement by session counts
+
 Input: Dataset[PurchaseDetails] => sessionId,userId,purchaseId,campaignId,channelId,isConfirmed,billingCost,purchaseTime
+
 Output  Dataset[ChannelEngagement] => channelId,sessionsCount
 
 
